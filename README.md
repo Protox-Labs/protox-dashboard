@@ -21,38 +21,74 @@ Protox Dashboard is the official web interface for the Protox protocol on Stella
 
 ## Getting Started
 
+Whether you're looking to run the dashboard locally for your own use or planning to contribute to the codebase, follow these steps to get your local environment set up.
+
 ### Prerequisites
 
-- Node.js 18+
-- npm or yarn
-- A Stellar wallet extension (e.g., [Freighter](https://www.freighter.app/))
+Before you begin, ensure you have the following installed:
+- **Node.js** (v18 or higher recommended)
+- **npm** (v9+) or **yarn**
+- A Stellar web wallet extension (e.g., [Freighter](https://www.freighter.app/) or [Albedo](https://albedo.link/))
 
-### Installation
+### 1. Installation
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/protox/protox-dashboard.git
-   cd protox-dashboard
-   ```
+Clone the repository to your local machine and install the required dependencies:
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+git clone [https://github.com/protox/protox-dashboard.git](https://github.com/protox/protox-dashboard.git)
+cd protox-dashboard
+npm install
+```
 
-3. Set up environment variables:
-   Create a `.env.local` file in the root directory:
-   ```env
-   NEXT_PUBLIC_VAULT_CONTRACT_ID=CD...
-   NEXT_PUBLIC_NETWORK=testnet
-   ```
+### 2. Environment Variable Setup
+The dashboard requires specific environment variables to connect to the Stellar network and the Protox smart contracts.
 
-4. Run the development server:
-   ```bash
-   npm run dev
-   ```
+Create a file named .env.local in the root directory of the project and add the following variables:
+```code snippet
+# The network to connect to (e.g., testnet, futurenet, public)
+NEXT_PUBLIC_NETWORK=testnet
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the dashboard.
+# The contract ID of the deployed Protox Vault
+NEXT_PUBLIC_VAULT_CONTRACT_ID=C...
+```
+(Note: If you are a new contributor, reach out in the community channels to get the latest testnet contract IDs!)
+
+### 3. Development Commands
+   To spin up the local development server with hot-reloading:
+```bash
+npm run dev
+```
+
+Open http://localhost:3000 in your browser. The page will reload automatically when you make edits.
+
+To build and test the project for production locally:
+
+```bash
+npm run build
+npm run start
+```
+
+### 4. Testing Commands
+   We enforce basic code quality standards. Run these commands to ensure your setup is functioning correctly before making contributions:
+```bash
+# Run the test suite
+npm test
+
+# Run the linter to catch syntax and style issues
+npm run lint
+```
+### 5. Common Troubleshooting
+* Error: Node.js version is too low
+   Ensure you are running Node.js version 18 or higher. You can check your version using node -v. We recommend using nvm to manage Node versions.
+
+* Error: Contract ID not defined or a blank dashboard
+Double-check your .env.local file. Make sure NEXT_PUBLIC_VAULT_CONTRACT_ID is set correctly. Remember to restart the development server (npm run dev) anytime you create or modify the .env.local file.
+
+* Error: Port 3000 is already in use
+Another application is currently using port 3000. You can stop the other application, or run the dashboard on a different port using npm run dev -- -p 3001.
+
+* Wallet won't connect
+Ensure your browser extension (like Freighter) is unlocked and set to the correct network (e.g., Testnet) matching your NEXT_PUBLIC_NETWORK variable.
 
 ## Contribution Guidelines
 
