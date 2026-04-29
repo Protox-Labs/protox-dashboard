@@ -3,20 +3,27 @@ import { useVault } from '@/hooks/useVault';
 import { Coins, RefreshCw, Trophy } from 'lucide-react';
 
 export const BalanceCard: React.FC = () => {
-  const { balance, isLoading, refresh, claimRewards } = useVault();
+  const { balance, isLoading, isRefreshing, refresh, claimRewards } = useVault();
 
   return (
-    <div className="card bg-gradient-to-br from-protox-primary to-protox-secondary text-white border-none shadow-lg shadow-protox-primary/20">
+    <div className="card bg-gradient-to-br from-protox-primary to-protox-secondary text-white border-none shadow-lg shadow-protox-primary/20 relative overflow-hidden">
+      {/* Loading overlay for refresh state */}
+      {isRefreshing && (
+        <div className="absolute inset-0 bg-protox-primary/10 backdrop-blur-[1px] flex items-center justify-center z-10">
+          <RefreshCw size={24} className="animate-spin text-white/50" />
+        </div>
+      )}
+
       <div className="flex justify-between items-start mb-4">
         <div className="p-2 bg-white/20 rounded-lg backdrop-blur-md">
           <Coins size={24} />
         </div>
         <button 
           onClick={refresh}
-          disabled={isLoading}
+          disabled={isLoading || isRefreshing}
           className="p-2 hover:bg-white/10 rounded-full transition-colors disabled:opacity-50"
         >
-          <RefreshCw size={20} className={isLoading ? 'animate-spin' : ''} />
+          <RefreshCw size={20} className={isLoading || isRefreshing ? 'animate-spin' : ''} />
         </button>
       </div>
 
