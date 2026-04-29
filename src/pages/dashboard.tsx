@@ -7,6 +7,13 @@ import { TransactionHistory } from '@/components/TransactionHistory';
 import { useWallet } from '@/hooks/useWallet';
 import { Wallet } from 'lucide-react';
 
+/**
+ * Dashboard Page component.
+ * 
+ * The central hub for users to interact with the Protox protocol.
+ * If the user is not connected, it prompts them to connect their wallet.
+ * Once connected, it displays the balance card, deposit/withdraw forms, and transaction history.
+ */
 export default function Dashboard() {
   const { isConnected, connect, isConnecting } = useWallet();
 

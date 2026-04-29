@@ -3,9 +3,22 @@ import Link from 'next/link';
 import { useWallet } from '@/hooks/useWallet';
 import { Wallet, LogOut, LayoutDashboard, Home } from 'lucide-react';
 
+/**
+ * Responsive Navigation Bar component.
+ * 
+ * Provides links to key sections of the application and handles wallet connection/disconnection.
+ * Features a sticky design with a backdrop blur effect for a modern look.
+ */
 export const Navbar: React.FC = () => {
   const { address, isConnected, isConnecting, connect, disconnect } = useWallet();
 
+  /**
+   * Truncates a Stellar wallet address for display purposes.
+   * Shows the first 6 and last 4 characters.
+   * 
+   * @param addr The full Stellar address (e.g., G...)
+   * @returns A formatted string like "GB34RD...A2E1"
+   */
   const truncateAddress = (addr: string) => {
     return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
   };
