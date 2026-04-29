@@ -1,14 +1,29 @@
 import React from 'react';
 import { Loader2, CheckCircle2, XCircle, AlertCircle, ExternalLink } from 'lucide-react';
 
+/**
+ * Possible states for a blockchain transaction.
+ */
 export type TxStatus = 'idle' | 'pending' | 'success' | 'failed' | 'cancelled';
 
+/**
+ * Properties for the TransactionStatus component.
+ */
 interface TransactionStatusProps {
+  /** The current lifecycle state of the transaction. */
   status: TxStatus;
+  /** Optional transaction hash for linking to the block explorer. */
   hash?: string;
+  /** Optional error message to display if the transaction fails. */
   error?: string;
 }
 
+/**
+ * TransactionStatus component.
+ * 
+ * Displays a visual indicator of a transaction's current status (pending, success, failed, etc.).
+ * Provides an optional link to the Stellar Expert explorer if a transaction hash is available.
+ */
 export const TransactionStatus: React.FC<TransactionStatusProps> = ({ status, hash, error }) => {
   if (status === 'idle') return null;
 
