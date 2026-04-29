@@ -34,7 +34,11 @@ const MOCK_TRANSACTIONS: Transaction[] = [
   { id: '6', type: 'reward', amount: '1.20 XLM', date: '2024-04-07 10:00', hash: 'pqr...678', status: 'success' },
 ];
 
-/** Supported filter types for the transaction list. */
+/** 
+ * Supported filter types for the transaction list. 
+ * 'all' shows everything, 'failed' shows only failed TXs, 
+ * while the others filter by successful transaction type.
+ */
 type FilterType = 'all' | 'deposit' | 'withdraw' | 'reward' | 'failed';
 
 /**
@@ -42,6 +46,7 @@ type FilterType = 'all' | 'deposit' | 'withdraw' | 'reward' | 'failed';
  * 
  * Displays a filterable list of past vault activities.
  * Provides links to Stellar Expert for detailed transaction inspection.
+ * Uses memoization to optimize performance when switching filters.
  */
 export const TransactionHistory: React.FC = () => {
   // Current active filter selection
