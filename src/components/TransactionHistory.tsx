@@ -159,7 +159,7 @@ export const TransactionHistory: React.FC = () => {
             </div>
             <p className="text-sm text-slate-600 font-bold">No transactions found</p>
             <p className="text-xs text-slate-400 mt-1.5 max-w-[180px]">
-              We couldn't find any activities matching your current filters.
+              We couldn&apos;t find any activities matching your current filters.
             </p>
           </div>
         )}
@@ -172,4 +172,3 @@ export const TransactionHistory: React.FC = () => {
     </div>
   );
 };
-

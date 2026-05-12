@@ -21,7 +21,9 @@ describe('TransactionHistory', () => {
     // So it should show 1 successful deposit.
     const transactions = screen.getAllByRole('link');
     expect(transactions.length).toBe(1);
-    expect(screen.getByText('500.00 XLM')).toBeInTheDocument();
+    expect(
+      screen.getByText((_, element) => element?.textContent === '+500.00 XLM')
+    ).toBeInTheDocument();
   });
 
   it('filters by failed transactions', () => {
